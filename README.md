@@ -61,7 +61,8 @@ django-observability/
 │   ├── chaos/                   # Chaos engineering app for telemetry generation
 │   │   ├── __init__.py
 │   │   ├── views.py             # Latency, error, CPU, memory, log generator endpoints
-│   │   └── urls.py              # Chaos routing
+│   │   ├── urls.py              # Chaos routing
+│   │   └── tests.py             # Automated metrics & chaos endpoint test suite
 │   ├── config/                  # Django project root settings
 │   │   ├── __init__.py
 │   │   ├── asgi.py
@@ -213,9 +214,31 @@ pip install -r app/requirements.txt
 # 3. Apply database migrations
 python app/manage.py migrate
 
-# 4. Start local development server
+# 4. Run automated tests
+python app/manage.py test chaos
+
+# 5. Start local development server
 python app/manage.py runserver 0.0.0.0:8000
 ```
+
+---
+
+## 🧪 Automated Testing
+
+The project includes unit and integration tests verifying both Prometheus metrics exposure and all chaos injection endpoints:
+
+```bash
+# Run tests inside virtual environment
+python app/manage.py test chaos -v 2
+
+# Or inside Docker container
+docker compose exec django python manage.py test chaos
+```
+
+| Test Class | Coverage |
+| :--- | :--- |
+| **`ObservabilityMetricsTests`** | Validates `/metrics` status 200, Prometheus `# HELP`/`# TYPE` annotations, and request counters. |
+| **`ChaosEndpointsTests`** | Validates `/chaos/health/`, `/chaos/delay/`, `/chaos/error/`, `/chaos/cpu/`, `/chaos/memory/`, and multi-level logging. |
 
 ---
 
