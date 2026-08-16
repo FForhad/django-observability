@@ -1,5 +1,6 @@
 # 📊 Django Full-Stack Observability & Chaos Engineering
 
+[![CI Pipeline](https://github.com/FForhad/django-observability/actions/workflows/ci.yml/badge.svg)](https://github.com/FForhad/django-observability/actions/workflows/ci.yml)
 [![Django](https://img.shields.io/badge/Django-5.2+-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)
 [![Prometheus](https://img.shields.io/badge/Prometheus-v2.51-E6522C?style=for-the-badge&logo=prometheus&logoColor=white)](https://prometheus.io/)
 [![Grafana](https://img.shields.io/badge/Grafana-v10.4-F46800?style=for-the-badge&logo=grafana&logoColor=white)](https://grafana.com/)
